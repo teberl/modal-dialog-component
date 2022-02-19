@@ -1,0 +1,11 @@
+{
+  "name": "modal-dialog-component",
+  "version": "0.0.1",
+  "description": "My first WebComponent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "teberl",
+  "license": "ISC"
+}
