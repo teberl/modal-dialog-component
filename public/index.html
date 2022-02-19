@@ -1,0 +1,53 @@
+<head>
+  <style>
+    button {
+      background: tomato;
+      border-radius: 4px;
+      color: #fff;
+      font-family: Helvetica, Arial, sans-serif;
+      padding: 0.5rem 1rem;
+      position: static;
+    }
+  </style>
+</head>
+<body>
+  <!-- <one-dialog basePath="foo-bar">
+      <span slot="heading">Hello world</span>
+      <div>
+        <p>
+          Lorem ipsum dolor amet tilde bicycle rights affogato brooklyn. Whatever
+          lomo subway tile sriracha gastropub edison bulb shabby chic tumeric
+          meditation mustache raw denim.
+        </p>
+      </div>
+    </one-dialog> -->
+
+  <button id="launch-dialog">Launch dialog</button>
+  <script>
+    // create dialog via javascript
+    const config = {
+      baseUrl: "htt;s://localhost:3000",
+      name: "foo-bar",
+      version: "1.0.0",
+      component: "./Dialog",
+    };
+    const modalDialog = document.createElement("modal-dialog");
+    modalDialog.config = config;
+    modalDialog.innerHTML = `
+      <span slot="heading">Hello world</span>
+      <div>
+        <p>
+          Lorem ipsum dolor amet tilde bicycle rights affogato brooklyn. Whatever
+          lomo subway tile sriracha gastropub edison bulb shabby chic tumeric
+          meditation mustache raw denim.
+        </p>
+      </div>
+      `;
+    // oneDialog.setAttribute("template", "new-template");
+    document.querySelector("body").appendChild(modalDialog);
+    const button = document.getElementById("launch-dialog");
+    button.addEventListener("click", () => {
+      modalDialog.open = true;
+    });
+  </script>
+</body>
