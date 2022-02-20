@@ -230,6 +230,8 @@ teberl - [@_teberl](https://twitter.com/_teberl) - mail@teberl.de
 A list of resources i found helpful and would like to give credit to.
 
 * [CSS-Tricks, An introduction to web components](https://css-tricks.com/an-introduction-to-web-components/)
+* [Google developers web components best practices](https://developers.google.com/web/fundamentals/web-components/best-practices)
+* [Google web components examples HowTo-Checkbox](https://github.com/GoogleChromeLabs/howto-components/blob/master/elements/howto-checkbox/howto-checkbox.js/)
 * [Best README template](https://github.com/othneildrew/Best-README-Template)
 * [Img Shields](https://shields.io)
 
@@ -250,5 +252,5 @@ A list of resources i found helpful and would like to give credit to.
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://www.linkedin.com/in/thomas-eberl-59708156/
 [product-screenshot]: images/screenshot.png

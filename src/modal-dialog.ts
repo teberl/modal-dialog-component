@@ -1,14 +1,19 @@
-import defaultTemplate from "./defaultTemplate.html";
+import defaultTemplate from "./template/defaultTemplate.html";
+
+interface IConfig {
+  baseUrl?: string;
+  version?: string;
+  name: string;
+  component: string;
+}
+
+interface IEventDetails {
+  type: "connected" | "disconnected" | "data-loaded";
+  config?: IConfig;
+  data?: unknown;
+}
 
 (function () {
-  console.log("executed");
-  interface IConfig {
-    baseUrl?: string;
-    version?: string;
-    name: string;
-    component: string;
-  }
-
   class ModalDialog extends HTMLElement {
     config: IConfig;
     #wasFocused: HTMLElement;
@@ -17,7 +22,6 @@ import defaultTemplate from "./defaultTemplate.html";
       super();
       this.attachShadow({ mode: "open" });
       this.close = this.close.bind(this);
-      console.log(this.config);
     }
 
     get open() {
@@ -70,7 +74,6 @@ import defaultTemplate from "./defaultTemplate.html";
       oldValue: unknown,
       newValue: unknown
     ) {
-      console.log("attributeChangedCallback", this.config);
       if (newValue !== oldValue) {
         switch (attrName) {
           // Boolean attributes
@@ -87,6 +90,12 @@ import defaultTemplate from "./defaultTemplate.html";
 
     connectedCallback() {
       this.render();
+      this.dispatchEvent(
+        new CustomEvent("modal-dialog", {
+          detail: { type: "connected", config: this.config },
+          bubbles: true,
+        })
+      );
     }
 
     disconnectedCallback() {
@@ -97,6 +106,13 @@ import defaultTemplate from "./defaultTemplate.html";
       shadowRoot
         .querySelector(".overlay")
         .removeEventListener("click", this.close);
+
+      this.dispatchEvent(
+        new CustomEvent("modal-dialog", {
+          detail: { type: "disconnected" },
+          bubbles: true,
+        })
+      );
     }
 
     render() {
@@ -120,14 +136,23 @@ import defaultTemplate from "./defaultTemplate.html";
         .addEventListener("click", this.close);
 
       this.open = this.open;
-      // fetch("https://baconipsum.com/api/?type=all-meat&paras=1&format=json")
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     // console.log("node", node);
-      //     shadowRoot.getElementById(
-      //       "content"
-      //     ).innerHTML = `<p class="bacon">${data[0]}</p>`;
-      //   });
+
+      setTimeout(() => {
+        fetch("https://baconipsum.com/api/?type=all-meat&paras=1&format=json")
+          .then((response) => response.json())
+          .then((data) => {
+            shadowRoot.getElementById(
+              "content"
+            ).innerHTML = `<p class="bacon">${data[0]}</p>`;
+
+            this.dispatchEvent(
+              new CustomEvent("modal-dialog", {
+                detail: { type: "data-loaded", data },
+                bubbles: true,
+              })
+            );
+          });
+      }, 10000);
     }
 
     close() {

@@ -49,5 +49,8 @@
     button.addEventListener("click", () => {
       modalDialog.open = true;
     });
+    document.addEventListener("modal-dialog", ({ detail }) => {
+      console.log("modal-dialog-event", detail);
+    });
   </script>
 </body>

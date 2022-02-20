@@ -1,9 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-// const ModuleFederationPlugin =
-//   require("webpack").container.ModuleFederationPlugin;
 const path = require("path");
-// const deps = require("./package.json").dependencies;
 
 const mode = process.env.NODE_ENV || "development";
 const prod = mode === "production";
@@ -52,21 +49,6 @@ module.exports = {
     ],
   },
   plugins: [
-    // new ModuleFederationPlugin({
-    //   name: "webpack5_poc_zeisslet",
-    //   filename: "remoteEntry.js",
-    //   exposes: {
-    //     "Tile": "./src/components/Tile",
-    //   },
-    //   shared: {
-    //     "styled-components": {
-    //       singleton: true,
-    //     },
-    //     'react': {
-    //       singleton: true,
-    //     }
-    //   }
-    // }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
